@@ -146,27 +146,47 @@ function setupLazyLineup() {
   runWhenNear('#lineup', renderLineup);
 }
 
+function renderKakaoMapWhenReady(retry = 0) {
+  const container = document.getElementById('daumRoughmapContainer1772563509501');
+  if (!container || window.__youandmeMapRendered) return;
+
+  if (window.daum && window.daum.roughmap) {
+    window.__youandmeMapRendered = true;
+    container.innerHTML = '';
+    new daum.roughmap.Lander({
+      timestamp: '1772563509501',
+      key: 'ickcmmdh5er',
+      mapWidth: '100%',
+      mapHeight: '100%'
+    }).render();
+    return;
+  }
+
+  if (retry < 40) window.setTimeout(() => renderKakaoMapWhenReady(retry + 1), 150);
+}
+
+function loadKakaoMap() {
+  if (window.__youandmeMapRendered) return;
+  if (window.__youandmeMapLoading) {
+    renderKakaoMapWhenReady();
+    return;
+  }
+
+  window.__youandmeMapLoading = true;
+  const script = document.createElement('script');
+  script.src = 'https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js';
+  script.charset = 'UTF-8';
+  script.async = true;
+  script.onload = () => renderKakaoMapWhenReady();
+  script.onerror = () => { window.__youandmeMapLoading = false; };
+  document.head.appendChild(script);
+}
+
 function setupLazyMap() {
-  runWhenNear('#location', () => {
-    if (window.__youandmeMapLoading) return;
-    window.__youandmeMapLoading = true;
-    const script = document.createElement('script');
-    script.src = 'https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js';
-    script.charset = 'UTF-8';
-    script.async = true;
-    script.onload = () => {
-      if (window.daum && window.daum.roughmap && !window.__youandmeMapRendered) {
-        window.__youandmeMapRendered = true;
-        new daum.roughmap.Lander({
-          timestamp: '1772563509501',
-          key: 'ickcmmdh5er',
-          mapWidth: '100%',
-          mapHeight: '100%'
-        }).render();
-      }
-    };
-    document.head.appendChild(script);
-  }, { rootMargin: '900px 0px' });
+  runWhenNear('#location', loadKakaoMap, { rootMargin: '1200px 0px' });
+  const warmup = () => window.setTimeout(loadKakaoMap, 2500);
+  if ('requestIdleCallback' in window) requestIdleCallback(warmup, { timeout: 3500 });
+  else window.addEventListener('load', warmup, { once: true });
 }
 function renderGallery() {
   const gallery = document.getElementById('spaceGallery');
@@ -292,6 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (event.key === 'ArrowRight') stepModal(1);
   });
 });
+
 
 
 
