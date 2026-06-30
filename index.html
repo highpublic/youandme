@@ -52,7 +52,7 @@
     "priceRange": "₩₩₩"
   }
   </script>
-  <link rel="preload" as="image" href="assets/images/bg0.jpg">
+  <link rel="preload" as="image" href="assets/images/optimized/bg0-1200.jpg" fetchpriority="high">
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="main.css">
   <link rel="icon" type="image/png" href="assets/images/favicon/favicon-96x96.png" sizes="96x96" />
@@ -61,12 +61,12 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="You&Me" />
   <link rel="manifest" href="assets/images/favicon/site.webmanifest" />
-  <script src="script.js?v=20260701-lang" defer></script>
+  <script src="script.js?v=20260701-perf" defer></script>
 </head>
 <body>
   <header class="site-header" aria-label="Primary navigation">
     <a class="brand" href="#home" aria-label="You & Me home">
-      <img src="assets/images/youandme.png" alt="You & Me">
+      <img src="assets/images/youandme.png" alt="You & Me" width="180" height="60">
     </a>
     <nav class="desktop-nav" aria-label="Main menu">
       <a href="#status" data-i18n="nav.status">매장 현황</a>
@@ -88,10 +88,10 @@
   <main id="home">
     <section class="hero" aria-label="You and Me introduction">
       <div class="hero-media" aria-hidden="true">
-        <span style="background-image:url('assets/images/bg0.jpg')"></span>
-        <span style="background-image:url('assets/images/bg1.jpg')"></span>
-        <span style="background-image:url('assets/images/bg2.jpg')"></span>
-        <span style="background-image:url('assets/images/bg3.jpg')"></span>
+        <span style="background-image:url('assets/images/optimized/bg0-1200.jpg')"></span>
+        <span style="background-image:url('assets/images/optimized/bg1-1200.jpg')"></span>
+        <span style="background-image:url('assets/images/optimized/bg2-1200.jpg')"></span>
+        <span style="background-image:url('assets/images/optimized/bg3-1200.jpg')"></span>
       </div>
       <div class="hero-content">
         <p class="eyebrow" data-i18n="hero.eyebrow">Gangnam Highpublic</p>
@@ -219,7 +219,7 @@
   </main>
 
   <footer class="footer">
-    <img src="assets/images/youandme.png" alt="You & Me">
+    <img src="assets/images/youandme.png" alt="You & Me" width="180" height="60">
     <p data-i18n="footer.copy">강남 유앤미 하이퍼블릭. 프리미엄 공간에서 여유로운 시간을 경험하세요.</p>
     <small>© 2026 YOU & ME. All Rights Reserved.</small>
   </footer>
@@ -230,22 +230,11 @@
     <img id="modalImage" src="" alt="">
     <button type="button" class="modal-nav next" id="modalNext" aria-label="Next image">›</button>
   </div>
-
-  <script charset="UTF-8" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
-  <script charset="UTF-8">
-    window.addEventListener('load', function () {
-      if (window.daum && window.daum.roughmap) {
-        new daum.roughmap.Lander({
-          timestamp: '1772563509501',
-          key: 'ickcmmdh5er',
-          mapWidth: '100%',
-          mapHeight: '100%'
-        }).render();
-      }
-    });
-  </script>
 </body>
 </html>
+
+
+
 
 
 

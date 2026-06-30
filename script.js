@@ -100,7 +100,7 @@ function renderBottles() {
   const visible = bottles.filter((item) => state.filter === 'all' || item.type === state.filter);
   grid.innerHTML = visible.map((item) => {
     const name = state.lang === 'zh' ? item.zh : state.lang === 'ja' ? item.ja : item.name;
-    return `<article class="bottle-card"><div class="bottle-image"><img src="${assetPath(item.image)}" alt="${name}" loading="lazy"></div><div class="bottle-info"><h3>${name}</h3><p>${formatPrice(item.price)}</p></div></article>`;
+    return `<article class="bottle-card"><div class="bottle-image"><img src="${assetPath(item.image)}" alt="${name}" loading="lazy" decoding="async" width="220" height="160"></div><div class="bottle-info"><h3>${name}</h3><p>${formatPrice(item.price)}</p></div></article>`;
   }).join('');
 }
 
@@ -123,13 +123,54 @@ function renderLineup() {
     assetPath('assets/images/gif/채윤27.gif')
   ];
   const items = lineupImages;
-  const slides = items.map((src, index) => `<div class="lineup-shot"><img src="${src}" alt="Lineup ${index + 1}" loading="lazy"></div>`).join('');
+  const slides = items.map((src, index) => `<div class="lineup-shot"><img src="${src}" alt="Lineup ${index + 1}" loading="lazy" decoding="async" width="220" height="391"></div>`).join('');
   wrap.innerHTML = `<div class="lineup-set">${slides}</div><div class="lineup-set" aria-hidden="true">${slides}</div>`;
 }
 
+function runWhenNear(selector, callback, options = { rootMargin: '600px 0px' }) {
+  const target = document.querySelector(selector);
+  if (!target) return;
+  if (!('IntersectionObserver' in window)) {
+    callback();
+    return;
+  }
+  const observer = new IntersectionObserver((entries) => {
+    if (!entries.some((entry) => entry.isIntersecting)) return;
+    observer.disconnect();
+    callback();
+  }, options);
+  observer.observe(target);
+}
+
+function setupLazyLineup() {
+  runWhenNear('#lineup', renderLineup);
+}
+
+function setupLazyMap() {
+  runWhenNear('#location', () => {
+    if (window.__youandmeMapLoading) return;
+    window.__youandmeMapLoading = true;
+    const script = document.createElement('script');
+    script.src = 'https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js';
+    script.charset = 'UTF-8';
+    script.async = true;
+    script.onload = () => {
+      if (window.daum && window.daum.roughmap && !window.__youandmeMapRendered) {
+        window.__youandmeMapRendered = true;
+        new daum.roughmap.Lander({
+          timestamp: '1772563509501',
+          key: 'ickcmmdh5er',
+          mapWidth: '100%',
+          mapHeight: '100%'
+        }).render();
+      }
+    };
+    document.head.appendChild(script);
+  }, { rootMargin: '900px 0px' });
+}
 function renderGallery() {
   const gallery = document.getElementById('spaceGallery');
-  gallery.innerHTML = galleryImages.map((src, index) => `<button type="button" class="space-item ${!state.expanded && index > 7 ? 'hidden' : ''}" data-index="${index}" aria-label="Open space image ${index + 1}"><img src="${src}" alt="You & Me interior ${index + 1}" loading="lazy"></button>`).join('');
+  gallery.innerHTML = galleryImages.map((src, index) => `<button type="button" class="space-item ${!state.expanded && index > 7 ? 'hidden' : ''}" data-index="${index}" aria-label="Open space image ${index + 1}"><img src="${src}" alt="You & Me interior ${index + 1}" loading="lazy" decoding="async" width="640" height="427"></button>`).join('');
 }
 
 function updateGalleryButton() {
@@ -218,7 +259,8 @@ function stepModal(direction) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  renderLineup();
+  setupLazyLineup();
+  setupLazyMap();
   renderGallery();
   state.statusSnapshot = createStatusSnapshot();
   applyLanguage(state.lang);
@@ -250,6 +292,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (event.key === 'ArrowRight') stepModal(1);
   });
 });
+
+
+
 
 
 
