@@ -146,48 +146,6 @@ function setupLazyLineup() {
   runWhenNear('#lineup', renderLineup);
 }
 
-function renderKakaoMapWhenReady(retry = 0) {
-  const container = document.getElementById('daumRoughmapContainer1772563509501');
-  if (!container || window.__youandmeMapRendered) return;
-
-  if (window.daum && window.daum.roughmap) {
-    window.__youandmeMapRendered = true;
-    container.innerHTML = '';
-    new daum.roughmap.Lander({
-      timestamp: '1772563509501',
-      key: 'ickcmmdh5er',
-      mapWidth: '100%',
-      mapHeight: '100%'
-    }).render();
-    return;
-  }
-
-  if (retry < 40) window.setTimeout(() => renderKakaoMapWhenReady(retry + 1), 150);
-}
-
-function loadKakaoMap() {
-  if (window.__youandmeMapRendered) return;
-  if (window.__youandmeMapLoading) {
-    renderKakaoMapWhenReady();
-    return;
-  }
-
-  window.__youandmeMapLoading = true;
-  const script = document.createElement('script');
-  script.src = 'https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js';
-  script.charset = 'UTF-8';
-  script.async = true;
-  script.onload = () => renderKakaoMapWhenReady();
-  script.onerror = () => { window.__youandmeMapLoading = false; };
-  document.head.appendChild(script);
-}
-
-function setupLazyMap() {
-  runWhenNear('#location', loadKakaoMap, { rootMargin: '1200px 0px' });
-  const warmup = () => window.setTimeout(loadKakaoMap, 2500);
-  if ('requestIdleCallback' in window) requestIdleCallback(warmup, { timeout: 3500 });
-  else window.addEventListener('load', warmup, { once: true });
-}
 function renderGallery() {
   const gallery = document.getElementById('spaceGallery');
   gallery.innerHTML = galleryImages.map((src, index) => `<button type="button" class="space-item ${!state.expanded && index > 7 ? 'hidden' : ''}" data-index="${index}" aria-label="Open space image ${index + 1}"><img src="${src}" alt="You & Me interior ${index + 1}" loading="lazy" decoding="async" width="640" height="427"></button>`).join('');
@@ -280,7 +238,6 @@ function stepModal(direction) {
 
 document.addEventListener('DOMContentLoaded', () => {
   setupLazyLineup();
-  setupLazyMap();
   renderGallery();
   state.statusSnapshot = createStatusSnapshot();
   applyLanguage(state.lang);
@@ -312,11 +269,4 @@ document.addEventListener('DOMContentLoaded', () => {
     if (event.key === 'ArrowRight') stepModal(1);
   });
 });
-
-
-
-
-
-
-
 

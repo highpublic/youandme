@@ -61,7 +61,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="You&Me" />
   <link rel="manifest" href="../assets/images/favicon/site.webmanifest" />
-  <script src="../script.js?v=20260701-mapfix" defer></script>
+  <script src="../script.js?v=20260701-maprestore" defer></script>
 </head>
 <body>
   <header class="site-header" aria-label="Primary navigation">
@@ -230,19 +230,19 @@
     <img id="modalImage" src="" alt="">
     <button type="button" class="modal-nav next" id="modalNext" aria-label="Next image">›</button>
   </div>
+  <script charset="UTF-8" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+  <script charset="UTF-8">
+    window.addEventListener('load', function () {
+      if (window.daum && window.daum.roughmap) {
+        new daum.roughmap.Lander({
+          timestamp: '1772563509501',
+          key: 'ickcmmdh5er',
+          mapWidth: '100%',
+          mapHeight: '100%'
+        }).render();
+      }
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
