@@ -428,8 +428,10 @@ h2 {
   display: block;
   margin-top: 6px;
   color: var(--text);
-  font-size: clamp(24px, 3vw, 36px);
+  font-size: clamp(20px, 2.25vw, 34px);
   line-height: 1.08;
+  white-space: nowrap;
+  overflow-wrap: normal;
 }
 .price-rows {
   display: grid;
@@ -626,6 +628,7 @@ h2 {
   .scroll-cue { display: none; }
   .split-head, .status-board, .about-section, .price-layout, .location-layout { grid-template-columns: 1fr; }
   .price-card { min-height: auto; }
+  .price-card-head strong { font-size: clamp(24px, 6vw, 34px); }
   .bottle-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .space-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 180px; }
 }
@@ -662,6 +665,7 @@ h2 {
   .image-modal { padding: 64px 14px; }
   .modal-nav { width: 42px; height: 58px; font-size: 34px; }
 }
+
 
 
 
