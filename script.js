@@ -64,10 +64,12 @@ const bottles = [
 const routeLangMap = { kr: 'ko', cn: 'zh', jp: 'ja' };
 const routeLangMatch = window.location.pathname.match(/\/(kr|cn|jp)(?:\/|$)/);
 const routeLang = routeLangMatch ? routeLangMap[routeLangMatch[1]] : null;
+const htmlDefaultLang = document.documentElement.dataset.defaultLang || (document.documentElement.lang === 'zh-CN' ? 'zh' : document.documentElement.lang);
 const scriptSrc = document.currentScript?.getAttribute('src') || 'script.js';
 const assetBase = scriptSrc.replace(/script\.js(?:\?.*)?$/, '');
 const assetPath = (path) => `${assetBase}${path}`;
-const state = { lang: routeLang || localStorage.getItem('youandme-lang') || 'ko', filter: 'all', expanded: false, modalIndex: 0, statusSnapshot: null };
+const initialLang = routeLang || (['ko', 'zh', 'ja'].includes(htmlDefaultLang) ? htmlDefaultLang : null) || localStorage.getItem('youandme-lang') || 'ko';
+const state = { lang: initialLang, filter: 'all', expanded: false, modalIndex: 0, statusSnapshot: null };
 const galleryImages = Array.from({ length: 15 }, (_, i) => assetPath(`assets/images/interior/${String(i + 1).padStart(3, '0')}.jpg`));
 
 function t(key, vars = {}) {
@@ -248,6 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (event.key === 'ArrowRight') stepModal(1);
   });
 });
+
 
 
 
