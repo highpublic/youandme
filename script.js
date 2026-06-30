@@ -61,8 +61,14 @@ const bottles = [
   { name: '돔페리뇽', zh: 'Dom Perignon', ja: 'ドン・ペリニヨン', image: 'assets/images/alcohol/돔페리뇽.png', price: '문의', type: 'champagne' }
 ];
 
-const state = { lang: localStorage.getItem('youandme-lang') || 'ko', filter: 'all', expanded: false, modalIndex: 0, statusSnapshot: null };
-const galleryImages = Array.from({ length: 15 }, (_, i) => `assets/images/interior/${String(i + 1).padStart(3, '0')}.jpg`);
+const routeLangMap = { kr: 'ko', cn: 'zh', jp: 'ja' };
+const routeLangMatch = window.location.pathname.match(/\/(kr|cn|jp)(?:\/|$)/);
+const routeLang = routeLangMatch ? routeLangMap[routeLangMatch[1]] : null;
+const scriptSrc = document.currentScript?.getAttribute('src') || 'script.js';
+const assetBase = scriptSrc.replace(/script\.js(?:\?.*)?$/, '');
+const assetPath = (path) => `${assetBase}${path}`;
+const state = { lang: routeLang || localStorage.getItem('youandme-lang') || 'ko', filter: 'all', expanded: false, modalIndex: 0, statusSnapshot: null };
+const galleryImages = Array.from({ length: 15 }, (_, i) => assetPath(`assets/images/interior/${String(i + 1).padStart(3, '0')}.jpg`));
 
 function t(key, vars = {}) {
   let text = translations[state.lang][key] || translations.ko[key] || key;
@@ -72,7 +78,7 @@ function t(key, vars = {}) {
 
 function applyLanguage(lang) {
   state.lang = lang;
-  localStorage.setItem('youandme-lang', lang);
+  if (!routeLang) localStorage.setItem('youandme-lang', lang);
   document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
   document.querySelectorAll('[data-i18n]').forEach((el) => { el.textContent = t(el.dataset.i18n); });
   document.querySelectorAll('.lang-btn').forEach((btn) => btn.classList.toggle('active', btn.dataset.lang === lang));
@@ -92,27 +98,27 @@ function renderBottles() {
   const visible = bottles.filter((item) => state.filter === 'all' || item.type === state.filter);
   grid.innerHTML = visible.map((item) => {
     const name = state.lang === 'zh' ? item.zh : state.lang === 'ja' ? item.ja : item.name;
-    return `<article class="bottle-card"><div class="bottle-image"><img src="${item.image}" alt="${name}" loading="lazy"></div><div class="bottle-info"><h3>${name}</h3><p>${formatPrice(item.price)}</p></div></article>`;
+    return `<article class="bottle-card"><div class="bottle-image"><img src="${assetPath(item.image)}" alt="${name}" loading="lazy"></div><div class="bottle-info"><h3>${name}</h3><p>${formatPrice(item.price)}</p></div></article>`;
   }).join('');
 }
 
 function renderLineup() {
   const wrap = document.getElementById('lineupMarquee');
   const lineupImages = [
-    'assets/images/gif/루비27.gif',
-    'assets/images/gif/민아23.gif',
-    'assets/images/gif/비니21.gif',
-    'assets/images/gif/서현26.gif',
-    'assets/images/gif/슬빈29.gif',
-    'assets/images/gif/시아24.gif',
-    'assets/images/gif/아윤20.gif',
-    'assets/images/gif/예진쿠쿠23.gif',
-    'assets/images/gif/유아22.gif',
-    'assets/images/gif/유정26.gif',
-    'assets/images/gif/이안24.gif',
-    'assets/images/gif/주민21.gif',
-    'assets/images/gif/지민25.gif',
-    'assets/images/gif/채윤27.gif'
+    assetPath('assets/images/gif/루비27.gif'),
+    assetPath('assets/images/gif/민아23.gif'),
+    assetPath('assets/images/gif/비니21.gif'),
+    assetPath('assets/images/gif/서현26.gif'),
+    assetPath('assets/images/gif/슬빈29.gif'),
+    assetPath('assets/images/gif/시아24.gif'),
+    assetPath('assets/images/gif/아윤20.gif'),
+    assetPath('assets/images/gif/예진쿠쿠23.gif'),
+    assetPath('assets/images/gif/유아22.gif'),
+    assetPath('assets/images/gif/유정26.gif'),
+    assetPath('assets/images/gif/이안24.gif'),
+    assetPath('assets/images/gif/주민21.gif'),
+    assetPath('assets/images/gif/지민25.gif'),
+    assetPath('assets/images/gif/채윤27.gif')
   ];
   const items = lineupImages;
   const slides = items.map((src, index) => `<div class="lineup-shot"><img src="${src}" alt="Lineup ${index + 1}" loading="lazy"></div>`).join('');
@@ -242,4 +248,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (event.key === 'ArrowRight') stepModal(1);
   });
 });
+
+
 
