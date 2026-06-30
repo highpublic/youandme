@@ -8,7 +8,7 @@
     'menu.eyebrow': 'Bottle Menu', 'menu.title': '주류 가격 안내', 'menu.desc': '대표 메뉴를 한눈에 확인하세요. 세부 구성은 상담 시 방문 목적에 맞춰 안내드립니다.', 'menu.all': '전체', 'menu.whisky': '위스키', 'menu.champagne': '샴페인',
     'space.eyebrow': 'Private Space', 'space.title': '프라이빗하게 완성되는 시간', 'space.desc': '고급스러운 룸, 안정적인 동선, 선명한 조명과 사운드가 모임의 밀도를 높입니다.', 'space.more': '공간 더 보기', 'space.less': '접기',
     'about.eyebrow': 'About You & Me', 'about.title': '신논현 중심에서 만나는 프리미엄 라운지', 'about.body': '유앤미는 생일파티, 회식, 접대, 각종 모임까지 목적에 맞는 룸과 서비스를 갖춘 강남 하이퍼블릭입니다. 처음 방문하시는 분도 편안하게 즐기실 수 있도록 예약부터 입장까지 세심하게 안내합니다.', 'about.fact1Label': '운영', 'about.fact1': '연중무휴 24시간', 'about.fact2Label': '위치', 'about.fact2': '서울 서초구 나루터로 64', 'about.fact3Label': '문의',
-    'location.eyebrow': 'Location', 'location.title': '오시는 길', 'location.desc': '서울 서초구 사평대로 64, 지하층. 내비게이션 버튼으로 바로 연결됩니다.', 'location.visitTitle': '예약 후 방문하시면 더 빠르게 안내됩니다.', 'location.visitBody': '초행길이라도 도착 전 연락 주시면 입구와 룸 배정까지 순서대로 도와드립니다.',
+    'location.eyebrow': 'Location', 'location.title': '오시는 길', 'location.desc': '서울 서초구 나루터로 64, 지하층. 내비게이션 버튼으로 바로 연결됩니다.', 'location.visitTitle': '예약 후 방문하시면 더 빠르게 안내됩니다.', 'location.visitBody': '초행길이라도 도착 전 연락 주시면 입구와 룸 배정까지 순서대로 도와드립니다.',
     'footer.copy': '강남 유앤미 하이퍼블릭. 프리미엄 공간에서 여유로운 시간을 경험하세요.'
   },
   zh: {
@@ -20,7 +20,7 @@
     'menu.eyebrow': '酒水菜单', 'menu.title': '酒水价格介绍', 'menu.desc': '代表酒水一目了然。详细配置会在咨询时按到访目的说明。', 'menu.all': '全部', 'menu.whisky': '威士忌', 'menu.champagne': '香槟',
     'space.eyebrow': '私人空间', 'space.title': '为私密时光而完成的空间', 'space.desc': '高级包间、稳定动线、清晰灯光与音响，让聚会更有质感。', 'space.more': '查看更多空间', 'space.less': '收起',
     'about.eyebrow': '关于 You & Me', 'about.title': '位于新论岘中心的高级 Lounge', 'about.body': 'You & Me 是位于江南的 Highpublic，适合生日派对、聚餐、商务接待和各种聚会。即使是首次到访，也会从预约到入场提供细致引导。', 'about.fact1Label': '营业', 'about.fact1': '全年无休 24小时', 'about.fact2Label': '位置', 'about.fact2': '首尔瑞草区渡口路64', 'about.fact3Label': '咨询',
-    'location.eyebrow': '位置', 'location.title': '交通位置', 'location.desc': '首尔瑞草区砂平大路64，地下层。可通过导航按钮直接连接。', 'location.visitTitle': '预约后到访可获得更快速的引导。', 'location.visitBody': '初次来访也可在到达前联系我们，我们会协助入口指引和包间安排。',
+    'location.eyebrow': '位置', 'location.title': '交通位置', 'location.desc': '首尔瑞草区渡口路64，地下层。 直接连接到导航按钮。', 'location.visitTitle': '预约后到访可获得更快速的引导。', 'location.visitBody': '初次来访也可在到达前联系我们，我们会协助入口指引和包间安排。',
     'footer.copy': '江南 You & Me Highpublic。在高级空间中体验从容的时间。'
   },
   ja: {
@@ -32,7 +32,7 @@
     'menu.eyebrow': 'Bottle Menu', 'menu.title': '酒類価格案内', 'menu.desc': '代表メニューを一覧で確認できます。詳細構成は相談時に目的に合わせてご案内します。', 'menu.all': 'すべて', 'menu.whisky': 'ウイスキー', 'menu.champagne': 'シャンパン',
     'space.eyebrow': 'Private Space', 'space.title': 'プライベートに仕上がる時間', 'space.desc': '上質なルーム、安定した動線、鮮明な照明とサウンドが集まりの密度を高めます。', 'space.more': 'もっと見る', 'space.less': '閉じる',
     'about.eyebrow': 'About You & Me', 'about.title': '新論峴中心で出会うプレミアムラウンジ', 'about.body': 'You & Me は誕生日、会食、接待、各種集まりまで目的に合うルームとサービスを備えた江南 Highpublic です。初めての方にも予約から入場まで丁寧にご案内します。', 'about.fact1Label': '営業', 'about.fact1': '年中無休 24時間', 'about.fact2Label': '場所', 'about.fact2': 'ソウル瑞草区ナルト路64', 'about.fact3Label': 'お問い合わせ',
-    'location.eyebrow': 'Location', 'location.title': 'アクセス', 'location.desc': 'ソウル瑞草区砂平大路64、地下階。ナビゲーションボタンからすぐ接続できます。', 'location.visitTitle': '予約後にご来店いただくと、よりスムーズにご案内できます。', 'location.visitBody': '初めての道でも到着前にご連絡いただければ、入口とルーム案内まで順にサポートします。',
+    'location.eyebrow': 'Location', 'location.title': 'アクセス', 'location.desc': 'ソウル特別市瑞草区ナルトロ64、地下階。 ナビゲーションボタンで直接接続されます。', 'location.visitTitle': '予約後にご来店いただくと、よりスムーズにご案内できます。', 'location.visitBody': '初めての道でも到着前にご連絡いただければ、入口とルーム案内まで順にサポートします。',
     'footer.copy': '江南 You & Me Highpublic。プレミアムな空間でゆとりある時間をお楽しみください。'
   }
 };
