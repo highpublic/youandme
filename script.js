@@ -106,7 +106,8 @@ function renderBottles() {
   const visible = bottles.filter((item) => state.filter === 'all' || item.type === state.filter);
   grid.innerHTML = visible.map((item) => {
     const name = state.lang === 'zh' ? item.zh : state.lang === 'ja' ? item.ja : item.name;
-    return `<article class="bottle-card"><div class="bottle-image"><img src="${assetPath(item.image)}" alt="${name}" loading="lazy" decoding="async" width="220" height="160"></div><div class="bottle-info"><h3>${name}</h3><p>${formatPrice(item.price)}</p></div></article>`;
+    const isEvent = item.name === '다이앤';
+    return `<article class="bottle-card ${isEvent ? 'event-bottle' : ''}">${isEvent ? '<span class="event-ribbon">EVENT</span>' : ''}<div class="bottle-image"><img src="${assetPath(item.image)}" alt="${name}" loading="lazy" decoding="async" width="220" height="160"></div><div class="bottle-info"><h3>${name}</h3><p>${formatPrice(item.price)}</p></div></article>`;
   }).join('');
 }
 
@@ -275,6 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (event.key === 'ArrowRight') stepModal(1);
   });
 });
+
 
 
 

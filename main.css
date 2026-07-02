@@ -328,6 +328,7 @@ h2 {
   gap: 12px;
 }
 .bottle-card {
+  position: relative;
   min-height: 0;
   display: grid;
   grid-template-rows: 112px auto;
@@ -352,6 +353,29 @@ h2 {
 .bottle-info { position: relative; z-index: 2; min-width: 0; align-self: start; padding-top: 0; margin-top: 0; text-align: center; }
 .bottle-card h3 { min-height: 0; margin-bottom: 3px; font-size: 16px; line-height: 1.18; white-space: normal; word-break: keep-all; overflow-wrap: normal; }
 .bottle-card p { margin: 0; color: var(--gold); font-size: 15px; font-weight: 900; line-height: 1.15; }
+.event-ribbon {
+  position: absolute;
+  top: 15px;
+  right: -34px;
+  z-index: 4;
+  width: 118px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(38deg);
+  background: linear-gradient(135deg, #ff6b7f, #d7b46a);
+  color: #160d08;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.34);
+  pointer-events: none;
+}
+.event-bottle {
+  border-color: rgba(215, 180, 106, 0.42);
+  background: linear-gradient(145deg, rgba(215, 180, 106, 0.08), rgba(255, 255, 255, 0.045));
+}
 
 .space-gallery {
   display: grid;
@@ -780,7 +804,9 @@ h2 {
   h1 { font-size: clamp(48px, 18vw, 76px); }
   h2 { font-size: clamp(29px, 10vw, 42px); }
   .hero-copy, .section-head p:not(.eyebrow), .split-head p, .about-copy p, .visit-card p, .faq-list details p { font-size: 15px; }
-  .bottle-card { min-height: 0; grid-template-rows: 104px auto; gap: 4px; padding: 9px 8px 10px; align-items: center; justify-items: center; text-align: center; }
+  .bottle-card {
+  position: relative;
+  min-height: 0; grid-template-rows: 104px auto; gap: 4px; padding: 9px 8px 10px; align-items: center; justify-items: center; text-align: center; }
   .bottle-image { height: 104px; }
   .bottle-image img { max-height: 98px; }
   .bottle-info { align-self: start; margin-top: 0; text-align: center; }
@@ -804,6 +830,10 @@ h2 {
   .image-modal { padding: 64px 14px; }
   .modal-nav { width: 42px; height: 58px; font-size: 34px; }
 }
+
+
+
+
 
 
 
